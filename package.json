@@ -1,0 +1,22 @@
+{
+  "name": "book-app",
+  "version": "1.0.0",
+  "description": "Serverless book management API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "serverless",
+    "api",
+    "blog"
+  ],
+  "author": "Jamie Livingstone",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^15.0.3",
+    "aws-sdk": "^2.466.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {}
+}

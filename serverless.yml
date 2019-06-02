@@ -1,0 +1,81 @@
+service: book-api
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: development
+  region: eu-west-1
+  environment:
+    BOOKS_TABLE: "books"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        Fn::Join:
+          - ""
+          - - "arn:aws:dynamodb:*:*:table/"
+            - Ref: BooksTable
+
+functions:
+  create:
+    handler: books/create.handler
+    events:
+      - http:
+          path: books
+          method: post
+          cors: true
+
+  update:
+    handler: books/update.handler
+    events:
+      - http:
+          path: books/{id}
+          method: put
+          cors: true
+
+  list:
+    handler: books/list.handler
+    events:
+      - http:
+          path: books
+          method: get
+          cors: true
+
+  get:
+    handler: books/get.handler
+    events:
+      - http:
+          path: books/{id}
+          method: get
+          cors: true
+
+  delete:
+    handler: books/delete.handler
+    events:
+      - http:
+          path: books/{id}
+          method: delete
+          cors: true
+
+resources:
+  Resources:
+    BooksTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.BOOKS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
