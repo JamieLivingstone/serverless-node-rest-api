@@ -1,3 +1,3 @@
-# Build a REST API with the Serverless Framework, Node and DynamoDB
+# Learn how to build Serverless RESTful API's (Serverless Framework, AWS & DyanmoDB)
 
 Blog post coming soon!

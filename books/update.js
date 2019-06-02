@@ -16,9 +16,7 @@ module.exports.handler = async function updateBook(event, context, callback) {
       body: JSON.stringify(validation.error.details)
     };
 
-    callback(null, response);
-
-    return;
+    return callback(null, response);
   }
 
   // Update item in database

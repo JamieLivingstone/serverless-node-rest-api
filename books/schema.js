@@ -10,6 +10,10 @@ const bookSchema = Joi.object().keys({
   pages: Joi.number().required()
 });
 
-exports.validateModel = function validateModel(model) {
+function validateModel(model) {
   return Joi.validate(model, bookSchema, { abortEarly: false });
+};
+
+module.exports = {
+    validateModel
 };
