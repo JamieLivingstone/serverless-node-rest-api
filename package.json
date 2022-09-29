@@ -14,7 +14,7 @@
   "author": "Jamie Livingstone",
   "license": "ISC",
   "dependencies": {
-    "@hapi/joi": "^15.0.3",
+    "@hapi/joi": "^15.1.1",
     "aws-sdk": "^2.466.0",
     "uuid": "^3.3.2"
   },
